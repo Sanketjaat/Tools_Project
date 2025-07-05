@@ -1,0 +1,105 @@
+{
+    "metadata": {
+        "version": "1.0",
+        "description": "Default firewall rules for Python Personal Firewall",
+        "created": "2025-06-25",
+        "author": "Your Name"
+    },
+    "rules": [
+        {
+            "type": "block",
+            "name": "Block SSH Brute Force",
+            "ip": "any",
+            "port": "22",
+            "protocol": "tcp",
+            "reason": "Prevent SSH brute force attacks",
+            "severity": "high"
+        },
+        {
+            "type": "block",
+            "name": "Block Telnet",
+            "ip": "any",
+            "port": "23",
+            "protocol": "tcp",
+            "reason": "Telnet is insecure",
+            "severity": "critical"
+        },
+        {
+            "type": "block",
+            "name": "Block NetBIOS",
+            "ip": "any",
+            "port": "137-139",
+            "protocol": "both",
+            "reason": "Prevent Windows sharing exploits",
+            "severity": "high"
+        },
+        {
+            "type": "block",
+            "name": "Block SMB",
+            "ip": "any",
+            "port": "445",
+            "protocol": "tcp",
+            "reason": "Block EternalBlue exploits",
+            "severity": "critical"
+        },
+        {
+            "type": "block",
+            "name": "Block RDP",
+            "ip": "any",
+            "port": "3389",
+            "protocol": "tcp",
+            "reason": "Prevent RDP brute force",
+            "severity": "high"
+        },
+        {
+            "type": "allow",
+            "name": "Allow HTTP",
+            "ip": "any",
+            "port": "80",
+            "protocol": "tcp",
+            "reason": "Standard web traffic",
+            "severity": "low"
+        },
+        {
+            "type": "allow",
+            "name": "Allow HTTPS",
+            "ip": "any",
+            "port": "443",
+            "protocol": "tcp",
+            "reason": "Secure web traffic",
+            "severity": "low"
+        },
+        {
+            "type": "allow",
+            "name": "Allow Google DNS",
+            "ip": "8.8.8.8",
+            "port": "53",
+            "protocol": "udp",
+            "reason": "Reliable DNS service",
+            "severity": "medium"
+        },
+        {
+            "type": "block",
+            "name": "Block Known Malicious IPs",
+            "ip": ["192.168.1.100", "10.0.0.5"],
+            "port": "any",
+            "protocol": "any",
+            "reason": "Block internal threats",
+            "severity": "critical"
+        },
+        {
+            "type": "block",
+            "name": "Block ICMP Ping",
+            "ip": "any",
+            "port": "N/A",
+            "protocol": "icmp",
+            "reason": "Prevent network scanning",
+            "severity": "medium"
+        }
+    ],
+    "rule_groups": {
+        "basic_protection": [0, 1, 2, 3, 4],
+        "web_browsing": [5, 6, 7],
+        "custom_rules": [8, 9]
+    }
+}
